@@ -2,16 +2,17 @@ var http = require('http'); //Built-in Node Functionality
 
 var express = require('express'); //Express for middleware
 // var handlebars = require('express-handlebars').create({defaultLayout:"index"});
-var path = require('path');
+var path = require('path'); //Path is used to concatenate paths for multiplatform stability
     //gulp = require('gulp');
 
 
 var app = express();
 // app.engine('handlebars',handlebars.engine);
 app.set('views',path.join(__dirname,'views'));
-app.set('view engine','hbs');
+app.set('view engine','ejs');
+app.use(express.static('bower_components'));
 
-app.get('*',function(req,res){
+app.get('/',function(req,res){
     res.render("index");
     console.log("requested",req.url);
 });
