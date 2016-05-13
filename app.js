@@ -1,14 +1,14 @@
 "use strict"
 var http = require('http'); //Built-in Node Functionality
 
+var path = require('path'); //Path is used to concatenate paths for multiplatform stability
+var gulp = require('gulp');
+var _ = require('underscore'); //underscore for simplifying array selection among other tools.
+var less = require('gulp-less'); //Compile .less into .css
 var express = require('express'); //Express Middleware
 var exHandlebars = require('express-handlebars'); //Handlebars for Express
-var path = require('path'); //Path is used to concatenate paths for multiplatform stability
-var _ = require('underscore'); //underscore for simplifying array selection among other tools.
-var gulp = require('gulp');
-var less = require('gulp-less'); //Compile .less into .css 
 
-var data = require('./public/js/data'); //Pulling in sample js object data
+var data = require('./data/data'); //Pulling in sample js object data
 
 var app = express();
 app.engine('handlebars', exHandlebars({ defaultLayout: 'default'}));
