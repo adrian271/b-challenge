@@ -1,1 +1,35 @@
-<h1>Hello <span style="text-transform:capitalize;">{{name}}</span></h1>
+<div id="contain">
+    <div id="products-container" class="row">
+        {{#each this}}
+        <div class="single-product col-xs-12 col-md-6 col-sm-12 col-lg-3">
+            <a href="#">
+                <p class="product-image"></p>
+                <p class="product-sku">{{sku}}</p>
+                <p class="product-name">{{name}}</p>
+                <p class="product-price">${{price}}</p>
+            </a>
+        </div>
+        {{/each}}
+    </div>
+</div>
+<div id="control">
+    <div class="row">
+        <div id="button-contain" class="col-lg-offset-4 col-lg-4 col-xs-offset-4 col-xs-4">
+            <button id="getMoreProduct" class="btn-lg">Get More Products</button>
+        </div>
+    </div>
+</div>
+<script id="product-template" type="text/x-handlebars-template">
+<div id="products-container" class="row">
+    \{{#each this}}
+    <div class="single-product col-xs-12 col-md-6 col-sm-12 col-lg-3">
+        <a href="#">
+            <p class="product-image"></p>
+            <p class="product-sku">\{{sku}}</p>
+            <p class="product-name">\{{name}}</p>
+            <p class="product-price">$\{{price}}</p>
+        </a>
+    </div>
+    \{{/each}}
+</div>
+</script>
