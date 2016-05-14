@@ -1,0 +1,24 @@
+{
+  "name": "b-challenge",
+  "homepage": "https://github.com/adrian271/b-test",
+  "authors": [
+    "Adrian Barnes adrian271@gmail.com"
+  ],
+  "description": "Simple demo that pulls in product data and pushes it to the client",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "underscore": "^1.8.3",
+    "handlebars": "^4.0.5",
+    "requirejs": "^2.2.0"
+  }
+}
