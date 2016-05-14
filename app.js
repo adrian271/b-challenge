@@ -2,7 +2,6 @@
 var http = require('http'); //Built-in Node Functionality
 
 var path = require('path'); //Path is used to concatenate paths for multiplatform stability
-var gulp = require('gulp');
 var _ = require('underscore'); //underscore for simplifying array selection among other tools.
 var less = require('gulp-less'); //Compile .less into .css
 var express = require('express'); //Express Middleware
