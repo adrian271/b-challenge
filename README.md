@@ -3,3 +3,15 @@
 Runs on Node v4.1.1
 
 Created By Adrian Barnes (Adrian271)
+
+Stack:
+* Nodejs
+* NPM
+* Gulp
+* Handlebars
+* jQuery
+* Underscore
+* Bootstrap
+* Less
+* Express
+* Bower
