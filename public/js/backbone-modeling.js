@@ -1,4 +1,4 @@
-var = Product = Backbone.Model.extend({
+var Product = Backbone.Model.extend({
     defaults: {
         sku: '',
         name: '',
@@ -14,10 +14,36 @@ var product1 = new Product({
     price : 69.99
 });
 
+// var ProductsView = Backbone.View.extend({
+//     model: new Product(),
+//     tagname: 'tr',
+//     initialize: function(){
+//         this.template = _.template($('product-template').html());
+//     },
+//     render:function(){
+//         this.$el.html(this.template({model:this.model.toJSON()}));
+//     }
+// });
 var ProductsView = Backbone.View.extend({
-    model: new Product(),
+    model: blogs,
+    el: $('#products-container').html(),
+    initialize: function() {
+        var self = this;
+        self.render();
+    },
     tagname: 'tr',
     initialize: function(){
-        this.template = _.template($())
+        this.template = _.template($('product-template').html());
+    },
+    render:function(){
+        this.$el.html(this.template({model:this.model.toJSON()}));
     }
+});
+
+var products = new Products([product1]);
+
+$('body').on('click','#getMoreProduct',function(){
+    var product = new Product({
+
+    });
 });
