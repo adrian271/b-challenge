@@ -34,18 +34,18 @@ app.RowView = Backbone.View.extend({    //View Controller for adding a row of 4 
         app.productRow.fetch();                         //Get inital product
     },
     events: {
-            'click button': 'addMoreRows'               //event handler for click 'More Product' Button
+            'click button': 'addMoreRows'           //event handler for click 'More Product' Button
     },
-    addMoreRows:function(e){                            //helper adds more product when clicked
-        app.productRow.fetch(this.addOne, this);
+    addMoreRows:function(e){                        //helper adds more product when clicked
+        app.productRow.fetch(this.addOne, this);    //add product row on click
     },
-    addOne: function(product){
-        var view = new app.ProductView({model: product});       
+    addOne: function(product){                              //add product to the products-container
+        var view = new app.ProductView({model: product});
         $('#products-container').append(view.render().el);
     },
-    addAll: function(){
+    addAll: function(){                                     //initial load pushes all four products via addOne function
         app.productRow.each(this.addOne, this);
     }
 });
 
-app.rowView = new app.RowView();
+app.rowView = new app.RowView();                        //Initialize the view,and we're up and running
