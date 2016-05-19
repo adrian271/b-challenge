@@ -1,49 +1,51 @@
-var Product = Backbone.Model.extend({
-    defaults: {
-        sku: '',
-        name: '',
-        price: ''
+var app = {}
+
+//1 Product Model
+app.Product = Backbone.Model.extend({ // Modeling product defaults
+    defaults:{
+        sku:"",
+        name:"Boardshorts",
+        price:""
     }
 });
 
-var Products = Backbone.Collection.extend({});
-
-var product1 = new Product({
-    sku : 8675309,
-    name : "AI Forever Boardshorts",
-    price : 69.99
+//1 Collection for Product Data
+app.ProductRow = Backbone.Collection.extend({
+    model:app.Product, //utilizes app.Product model assigned above
+    url:"/api" //Pulls from our local api
 });
+//Collection Instanciation
+app.productRow = new app.ProductRow();
 
-// var ProductsView = Backbone.View.extend({
-//     model: new Product(),
-//     tagname: 'tr',
-//     initialize: function(){
-//         this.template = _.template($('product-template').html());
-//     },
-//     render:function(){
-//         this.$el.html(this.template({model:this.model.toJSON()}));
-//     }
-// });
-var ProductsView = Backbone.View.extend({
-    model: blogs,
-    el: $('#products-container').html(),
-    initialize: function() {
-        var self = this;
-        self.render();
+//2 View Controllers
+app.ProductView = Backbone.View.extend({  //View Controller for individual item
+    tagName : 'div',
+    attributes : {class:'single-product col-xs-12 col-md-6 col-sm-12 col-lg-3'}, //div attributes for each product
+    template : _.template($('#product-template').html()),  //Template from index page
+    render: function(){
+        this.$el.html(this.template(this.model.toJSON())); //Render template file for View Controller
+        return this;
+    }
+});
+app.RowView = Backbone.View.extend({    //View Controller for adding a row of 4 products
+    el:'body',                          //View Controller applied to body
+    initialize:function(){
+        app.productRow.on('update', this.addAll, this); //Anytime the page is loaded the addAll helper is called
+        app.productRow.fetch();                         //Get inital product
     },
-    tagname: 'tr',
-    initialize: function(){
-        this.template = _.template($('product-template').html());
+    events: {
+            'click button': 'addMoreRows'               //event handler for click 'More Product' Button
     },
-    render:function(){
-        this.$el.html(this.template({model:this.model.toJSON()}));
+    addMoreRows:function(e){                            //helper adds more product when clicked
+        app.productRow.fetch(this.addOne, this);
+    },
+    addOne: function(product){
+        var view = new app.ProductView({model: product});       
+        $('#products-container').append(view.render().el);
+    },
+    addAll: function(){
+        app.productRow.each(this.addOne, this);
     }
 });
 
-var products = new Products([product1]);
-
-$('body').on('click','#getMoreProduct',function(){
-    var product = new Product({
-
-    });
-});
+app.rowView = new app.RowView();
